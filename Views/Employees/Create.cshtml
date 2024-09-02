@@ -1,19 +1,24 @@
-﻿
+﻿@model Employee // we will ad out Modle we need it's attributes and use it
+
+
 <h1>Create Employees</h1>
 
 <form asp-controller="Employees" asp-action="Create">
     <div class="my-3">
-        <label>Name</label>
-        <input type="type" class="form-control" name="Name" value="" />
+        @* Here we will Replace and add asp-for="" for lable and inputs*@
+        @* That it's what all we need and remove name and type , it will take from attributes*@
+        @* We should to use attributes name iside asp-for same as what it is in Employee Modle*@
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control"/>
     </div>
     <div class="my-3">
-        <label>Email</label>
-        <input type="type" class="form-control" name="Email" value="" />
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control"/>
     </div>
     
     <div class="my-3">
-        <label>Password</label>
-        <input type="type" class="form-control" name="Password" value="" />
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control"/>
     </div>
 
     <button type="submit" class="btn btn-outline-primary">Add</button>

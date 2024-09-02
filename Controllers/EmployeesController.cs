@@ -1,18 +1,23 @@
 ﻿using LearnMVC.Data;
 using LearnMVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LearnMVC.Controllers
 {
     public class EmployeesController : Controller
     {
-        AppDbContext dbCon = new AppDbContext();
+        private readonly AppDbContext dbCon;
+
+        //this mean the program will be create the object not the programmer 
+        public EmployeesController(AppDbContext context)
+        {
+            this.dbCon = context;
+        }
         public IActionResult Index()
         {
-            var emps = dbCon.Employees.ToList();
-            emps.ForEach(e => Console.WriteLine(e.Name));
+            var emps = dbCon.Employees.AsNoTracking().ToList(); 
             return View(emps);
-            //return View("Index",emps);
         }
 
         public IActionResult Create()
@@ -48,12 +53,14 @@ namespace LearnMVC.Controllers
 
             employee.Name = emp.Name;
             employee.Email = emp.Email;
-            employee.Password = emp.Password;
+            if(emp.Password != null)
+            {
+                employee.Password = emp.Password;
+            }
 
             dbCon.SaveChanges();
 
-            return Content($"{employee.Name} .... {employee.Email} .... {employee.Password}");
-            return RedirectToAction("Index");
+            return RedirectToAction("Index");           
         }
     }
 }

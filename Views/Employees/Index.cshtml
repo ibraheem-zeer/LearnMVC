@@ -1,4 +1,4 @@
-﻿@model List<Employee>
+﻿@model IEnumerable<Employee>
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,10 +9,10 @@
 <table class="table">
     <thead>
         <tr>
-            <td>Id</td>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Password</td>
+            <td>@Html.DisplayNameFor(emp => emp.Id)</td>
+            <td>@Html.DisplayNameFor(emp => emp.Name)</td>
+            <td>@Html.DisplayNameFor(emp => emp.Email)</td>
+            <td>@Html.DisplayNameFor(emp => emp.Password)</td>
             <td>Action</td>
         </tr>
     </thead>
@@ -28,6 +28,7 @@
                 <td>
                     <a class="btn btn-danger" asp-controller="Employees" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     <a class="btn btn-outline-info" asp-controller="Employees" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    @* @Html.ActionLink("Employee" , "Edit");  this is HTML helper and we will never use it cause it's hard and not good *@
                 </td>
             </tr>
         }
