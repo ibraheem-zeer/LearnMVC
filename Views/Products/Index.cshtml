@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@if(Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Name)</td>
+                <td>@Html.DisplayNameFor(model => model.Price)</td>
+                <td>@Html.DisplayNameFor(model => model.Quantity)</td>
+                <td>@Html.DisplayNameFor(model => model.InPublish)</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.Quantity</td>
+                    <td>
+                        @if (item.InPublish == true)
+                        {
+                            <a class="btn btn-@(item.InPublish ? "Success" : "danger")"
+                                asp-controller="Products"
+                                asp-action="ChangeStatus"
+                                asp-route-id = "@item.ProductId">
+                                @(item.InPublish == true ? "Un-Publish" : "Publish")
+                            </a>
+                        }else
+                        {
+                            <a class="btn btn-@(item.InPublish ? "Success" : "danger")"
+                               asp-controller="Products"
+                               asp-action="ChangeStatus"
+                               asp-route-id="@item.ProductId">
+                               @(item.InPublish == true ? "Un-Publish" : "Publish")
+                           </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">No Data found</div>
+}

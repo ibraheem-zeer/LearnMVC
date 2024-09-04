@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LearnMVC.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240901175017_init")]
+    [Migration("20240904083903_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -24,31 +24,33 @@ namespace LearnMVC.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LearnMVC.Models.Employee", b =>
+            modelBuilder.Entity("LearnMVC.Models.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("InPublish")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("InStock")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
-                    b.ToTable("Employees");
+                    b.HasKey("ProductId");
+
+                    b.ToTable("products");
                 });
 #pragma warning restore 612, 618
         }
