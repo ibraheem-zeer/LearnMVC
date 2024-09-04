@@ -40,7 +40,11 @@ namespace LearnMVC.Controllers
 
             ViewBag.Error = "Invalid username or password";
             return View(user);
+        }
 
+        public IActionResult Index()
+        {
+            return View(context.Users.ToList());
         }
     
     }
