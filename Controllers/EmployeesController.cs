@@ -8,8 +8,6 @@ namespace LearnMVC.Controllers
     public class EmployeesController : Controller
     {
         private readonly AppDbContext dbCon;
-
-        //this mean the program will be create the object not the programmer 
         public EmployeesController(AppDbContext context)
         {
             this.dbCon = context;
@@ -50,16 +48,13 @@ namespace LearnMVC.Controllers
         public IActionResult Update(Employee emp)
         {
             var employee = dbCon.Employees.Find(emp.Id);
-
             employee.Name = emp.Name;
             employee.Email = emp.Email;
             if(emp.Password != null)
             {
                 employee.Password = emp.Password;
             }
-
-            dbCon.SaveChanges();
-
+            dbCon.SaveChanges();           
             return RedirectToAction("Index");           
         }
     }

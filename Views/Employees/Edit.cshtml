@@ -1,24 +1,24 @@
 ﻿@model Employee
+
 @{
     ViewData["Title"] = "Edit";
 }
 
 <h1>Edit Employee</h1>
-<form asp-controller="Employees" asp-action="Update">
-    <div class="my-3">
-        @Html.DisplayNameFor( model => model.Name)
-        <input asp-for="Name" class="form-control" value="@Model.Name" />
-    </div>
-    <div class="my-3">
-        @Html.DisplayNameFor( model => model.Email)
-        <input asp-for="Email" class="form-control" value="@Model.Email" />
-    </div>
 
+<form asp-controller="Employees" asp-action="Update" method="post">
+    <input type="hidden" asp-for="Id" />
     <div class="my-3">
-        @Html.DisplayNameFor( model => model.Password)
-        <input asp-for="Password" class="form-control"/>
+        @Html.DisplayNameFor(model => model.Name)
+        <input asp-for="Name" class="form-control" />
     </div>
-
+    <div class="my-3">
+        @Html.DisplayNameFor(model => model.Email)
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="my-3">
+        @Html.DisplayNameFor(model => model.Password)
+        <input asp-for="Password" class="form-control" />
+    </div>
     <button type="submit" class="btn btn-outline-primary">Update</button>
 </form>
-
