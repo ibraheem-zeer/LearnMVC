@@ -4,11 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Display Users</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -46,13 +43,12 @@
                     @item.CreatedAt
                 </td>
                 <td>
-                    <a
-                        class="btn btn-@(item.IsActive == true ? "success" : "danger")"
+                    <a class="btn btn-@(item.IsActive == true ? "danger" : "success")"
                         asp-controller="Users"
                         asp-action="ChangeActive"
                         asp-route-id="@item.UserId"
                         >
-                        @(item.IsActive == true ? "Disable" : "Enable")
+                        @(item.IsActive == true ? "Enable" : "Disable")
                     </a>
                 </td>
             </tr>

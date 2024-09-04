@@ -47,7 +47,7 @@ namespace LearnMVC.Controllers
             return View(context.Users.ToList());
         }
 
-        public IActionResult ChangeActive(int id)
+        public IActionResult ChangeActive(Guid id)
         {
             var user = context.Users.Find(id);
             user.IsActive = !user.IsActive;
