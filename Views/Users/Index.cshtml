@@ -46,7 +46,14 @@
                     @item.CreatedAt
                 </td>
                 <td>
-                    <a></a>
+                    <a
+                        class="btn btn-@(item.IsActive == true ? "success" : "danger")"
+                        asp-controller="Users"
+                        asp-action="ChangeActive"
+                        asp-route-id="@item.UserId"
+                        >
+                        @(item.IsActive == true ? "Disable" : "Enable")
+                    </a>
                 </td>
             </tr>
         }

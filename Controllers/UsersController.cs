@@ -36,7 +36,7 @@ namespace LearnMVC.Controllers
         {
             var checkUser = context.Users.Where(u => u.UserName == user.UserName && u.Password == user.Password);
 
-            if(checkUser.Any()) return RedirectToAction("Index", "Employees");
+            if(checkUser.Any()) return RedirectToAction(nameof(Index));
 
             ViewBag.Error = "Invalid username or password";
             return View(user);
@@ -46,6 +46,14 @@ namespace LearnMVC.Controllers
         {
             return View(context.Users.ToList());
         }
-    
+
+        public IActionResult ChangeActive(int id)
+        {
+            var user = context.Users.Find(id);
+            user.IsActive = !user.IsActive;
+            context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
